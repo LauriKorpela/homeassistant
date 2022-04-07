@@ -1,0 +1,25 @@
+- name: enervent
+  type: serial
+  method: rtu
+  port: /dev/ttyUSB0
+  baudrate: 19200
+  stopbits: 1
+  bytesize: 8
+  parity: N
+  timeout: 4
+  sensors: !include modbus_sensors.yaml
+  switches: !include modbus_switches.yaml
+  climates:
+    - name: Enervent
+      address: 47
+      slave: 1
+      data_type: uint16
+      count: 1
+      scale: 0.1
+      offset: 0
+      precision: 0
+      max_temp: 30
+      min_temp: 15
+      temp_step: 1
+      scan_interval: 5
+      target_temp_register: 135

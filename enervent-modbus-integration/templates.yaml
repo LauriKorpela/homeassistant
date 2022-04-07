@@ -1,0 +1,15 @@
+- sensor:
+  - name: "Air ventilation heater power"
+    unit_of_measurement: "W"
+    state: "{{ ([[states('sensor.air_ventilation_temperature_controller_output')| float-100, 0]| max, 100]| min |float/100*800) | int }}"
+    device_class: power
+    state_class: measurement
+  - name: "Air ventilation heater recovery"
+    unit_of_measurement: "%"
+    state: "{{ ([[states('sensor.air_ventilation_temperature_controller_output')| float , 0]| max , 100]| min) | int }}"
+    device_class: power_factor
+    state_class: measurement
+
+..
+Other pieces of configuration
+..

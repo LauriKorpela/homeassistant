@@ -1,0 +1,45 @@
+- name: "Air ventilation away"
+  slave: 1
+  address: 1
+  write_type: coil
+- name: "Air ventilation away long"
+  slave: 1
+  address: 2
+  write_type: coil
+- name: "Air ventilation overpressure"
+  slave: 1
+  address: 3
+  write_type: coil
+  verify:
+- name: "Air ventilation cooking"
+  slave: 1
+  address: 4
+  write_type: coil
+- name: "Air ventilation central vacuum cleaner"
+  slave: 1
+  address: 5
+  write_type: coil
+- name: "Air ventilation max heating"
+  slave: 1
+  address: 6
+  write_type: coil
+- name: "Air ventilation max cooling"
+  slave: 1
+  address: 7
+  write_type: coil
+- name: "Air ventilation manual forcing"
+  slave: 1
+  address: 10
+  write_type: coil
+- name: "Air ventilation summernight cooling"
+  slave: 1
+  address: 12
+  write_type: coil
+- name: "Air ventilation heat recycler status"
+  slave: 1
+  address: 30
+  write_type: coil
+- name: "Air ventilation heater status"
+  slave: 1
+  address: 32
+  write_type: coil

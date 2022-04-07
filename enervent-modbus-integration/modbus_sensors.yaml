@@ -1,0 +1,131 @@
+# Sensors from Enervent air ventilation unit
+- name: "Air ventilation fresh air temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 6
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1
+  device_class: temperature
+  state_class: measurement
+- name: "Air ventilation HRC supply air temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 7
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1
+  device_class: temperature
+  state_class: measurement
+- name: "Air ventilation supply air temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 8
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1
+  device_class: temperature
+  state_class: measurement
+- name: "Air ventilation waste air temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 9
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1
+  device_class: temperature
+  state_class: measurement
+- name: "Air ventilation exhaust air temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 10
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1
+  device_class: temperature
+  state_class: measurement
+- name: "Air ventilation HRC exhaust air temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 11
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1
+  device_class: temperature
+  state_class: measurement
+- name: "Air ventilation exhaust air humidity"
+  unit_of_measurement: "%"
+  slave: 1
+  address: 13
+  scan_interval: 5
+  input_type: holding
+  scale: 1
+  precision: 0
+  data_type: uint16
+  device_class: humidity
+  state_class: measurement
+- name: "Air ventilation HRC supply efficiency"
+  unit_of_measurement: "%"
+  slave: 1
+  address: 29
+  scan_interval: 5
+  input_type: holding
+  scale: 1
+  precision: 0
+  data_type: uint16
+  device_class: power_factor
+  state_class: measurement
+- name: "Air ventilation HRC exhaust efficiency"
+  unit_of_measurement: "%"
+  slave: 1
+  address: 30
+  scan_interval: 5
+  input_type: holding
+  scale: 1
+  precision: 0
+  data_type: uint16
+  device_class: power_factor
+  state_class: measurement
+- name: "Air ventilation exhaust air humidity 48h average"
+  unit_of_measurement: "%"
+  slave: 1
+  address: 35
+  scan_interval: 5
+  input_type: holding
+  scale: 1
+  precision: 0
+  data_type: uint16
+  device_class: humidity
+  state_class: measurement
+- name: "Air ventilation temperature controller output"
+  #-100...-1=cooling,
+  # 0=nothing,
+  # 1...100=heat recovery,
+  # 101...200=additional heating or heat pump
+  # This is used as an input for template sensors
+  slave: 1
+  address: 49
+  scan_interval: 5
+  input_type: holding
+  data_type: int16
+- name: "Air ventilation set speed"
+  unit_of_measurement: "%"
+  slave: 1
+  address: 50
+  scan_interval: 5
+  input_type: holding
+  data_type: uint16
+- name: "Air ventilation set temperature"
+  unit_of_measurement: °C
+  slave: 1
+  address: 135
+  scan_interval: 5
+  input_type: holding
+  scale: 0.1
+  precision: 1

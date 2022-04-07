@@ -1,0 +1,8 @@
+..
+Other pieces of configuration
+..
+automation: !include automations.yaml
+template: !include templates.yaml
+
+# MODBUS configuration
+modbus: !include modbus.yaml
