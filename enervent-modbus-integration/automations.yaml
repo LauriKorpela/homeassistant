@@ -1,0 +1,94 @@
+..
+Other automations
+..
+
+- id: '1663610210978'
+  alias: Air ventilation temperature automation
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.house_target_temperature
+  - platform: state
+    entity_id:
+    - sensor.nordpool_kwh_fi_eur
+  condition: []
+  action:
+  - if:
+    - condition: and
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.nordpool_kwh_fi_eur
+        below: input_number.energy_price_cheap
+      - condition: numeric_state
+        entity_id: sensor.house_temperature
+        value_template: '{{ float(state.state) - 1.3 }}'
+        below: input_number.house_target_temperature
+        enabled: true
+      enabled: true
+    then:
+    - service: script.air_ventilation_set_temperature
+      data:
+        adjustment: 1
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id: switch.air_ventilation_heater_allowed
+    else:
+    - if:
+      - condition: numeric_state
+        entity_id: sensor.nordpool_kwh_fi_eur
+        above: input_number.energy_price_too_high
+      then:
+      - service: script.air_ventilation_set_temperature
+        data:
+          adjustment: 0
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.air_ventilation_heater_allowed
+      else:
+      - service: script.air_ventilation_set_temperature
+        data:
+          adjustment: 0
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.air_ventilation_heater_allowed
+  mode: single
+
+- id: '1663347586049'
+  alias: Air ventilation speed automation
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.number_of_persons_at_home
+    enabled: true
+  - platform: state
+    entity_id:
+    - input_number.air_ventilation_target_speed
+  condition: []
+  action:
+  - if:
+    - condition: numeric_state
+      entity_id: sensor.number_of_persons_at_home
+      below: 2
+    then:
+    - service: script.air_ventilation_set_speed
+      data:
+        multiplier: 0.7
+    else:
+    - if:
+      - condition: numeric_state
+        entity_id: sensor.number_of_persons_at_home
+        below: 3
+      then:
+      - service: script.air_ventilation_set_speed
+        data:
+          multiplier: 0.85
+      else:
+      - service: script.air_ventilation_set_speed
+        data:
+          multiplier: 1
+  mode: single
