@@ -1,0 +1,31 @@
+..
+Other pieces of configuration
+..
+
+air_ventilation_set_speed:
+  description: "Sets air ventilation speed based on requested speed in input_number.air_ventilation_target_speed and multiplier in this script call"
+  fields:
+    multiplier:
+      description: "Multiplier used to scale input_number.air_ventilation_target_speed"
+      example: "0.8"
+  sequence:
+    - service: modbus.write_register
+      data:
+        hub: enervent
+        address: 53
+        value: "{{ multiplier | float * states('input_number.air_ventilation_target_speed') | int }}"
+  mode: single
+
+air_ventilation_set_temperature:
+  description: "Sets air ventilation temperature based on requested temperature in input_number.house_target_temperature and adding the adjustment in this script call"
+  fields:
+    adjustment:
+      description: "Adjustment used to add into input_number.house_target_temperature"
+      example: "-1.0"
+  sequence:
+    - service: modbus.write_register
+      data:
+        hub: enervent
+        address: 135
+        value: "{{ (states('input_number.house_target_temperature') | int + adjustment) * 10 | int }}"
+  mode: single
